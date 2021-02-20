@@ -15,10 +15,16 @@ var firebaseConfig =
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+
+
 var firstButton = document.getElementbyId("firstButton");
 var abstract = document.getElementbyId("abstract");
 
 function submitClick() {
+  var ref = firebase.database().ref();
+    ref.on("value", function(snapshot){
+    output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+  });
   window.alert("Still working");
   var firebaseRef = firebase.database().ref();
   firebaseRef.child("Text").set("someValue");
